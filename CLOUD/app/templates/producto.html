@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!--Importando Jquery-->
+        <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+        <!--CSS-->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+        <!--JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+        <!--DATATABLES-->
+        <link rel="stylesheet" href="//cdn.datatables.net/2.0.8/css/dataTables.dataTables.min.css">
+        <script src="//cdn.datatables.net/2.0.8/js/dataTables.min.js"></script>
+        <!--SWEETALERT-->
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <!--JQUERY VALIDATE-->
+        <script src="{% static 'library/jquery-validation/dist/jquery.validate.min.js' %}"></script>
+        <!--FONTAWESOME-->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+        <title>PRODUCTO</title>
+    </head>
+    <body>
+        <header class="p-3 bg-dark text-white">
+            <div class="container">
+                <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+                    <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+                        <li><a href="cliente.html" class="nav-link px-2 text-white">CLIENTE</a></li>
+                        <li><a href="empleado.html" class="nav-link px-2 text-white">EMPLEADO</a></li>
+                        <li><a href="producto.html" class="nav-link px-2 text-white">PRODUCTO</a></li>
+                        <li><a href="proveedor.html" class="nav-link px-2 text-white">PROVEEDOR</a></li>
+                        <li><a href="venta.html" class="nav-link px-2 text-white">VENTA</a></li>
+                    </ul>
+                    <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
+                        <input type="search" class="form-control form-control-dark" placeholder="Buscar..." aria-label="Buscar">
+                    </form>
+                    <div class="text-end">
+                        <a href="" class="btn btn-warning">Ingresar</a>
+                        <button type="button" class="btn btn-warning">Registrarse</button>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <br>
+        <div class="container-fluid">
+            <div class="row">
+                <h1 class="text-center">REGISTRAR PRODUCTOS</h1>
+                <br>
+                <div class="col-md-4"></div>
+                <div class="col-md-4">
+                    <form action=""  enctype="multipart/form-data" method="post" id="frm_nuevo_producto">
+                        <label for=""><b>NOMBRE PRODUCTO:</b></label>
+                        <input type="text" name="nombre" id="nombre" class="form-control" placeholder="Ingrese el nombre del producto" required>
+                        <br>
+                        <label for=""><b>PRECIO:</b></label>
+                        <input name="precio" id="precio" class="form-control" placeholder="Ingrese el precio del producto" required>
+                        <br>
+                        <label for=""><b>STOCK:</b></label>
+                        <input type="number" name="stock" id="stock" class="form-control" placeholder="Ingrese el stock" required>                   
+                        <br>
+                        <label for=""><b>FECHA:</b></label>
+                        <input type="datetime" name="fecha" id="fecha" class="form-control" required>                   
+                        <br>
+                        <div class="text-center"> 
+                            <button type="submit" class="btn btn-primary">Guardar</button>
+                            &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                            <button type="reset" class="btn btn-danger">Cancelar</button>
+                        </div>
+                    </form>
+                </div>
+            </div> 
+        </div> 
+        <br>
+        <div class="p-3">
+            <div class="card">
+                <div class="card-title text-center">
+                    <h3><b>LISTADO DE PRODUCTOS</b></h3>
+                </div>
+            </div>
+            <table id="tableProducto" class="table table-bordered table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th class="text-center">ID</th>
+                        <th class="text-center">NOMBRE PRODUCTO</th>
+                        <th class="text-center">PRECIO</th>
+                        <th class="text-center">STOCK</th>
+                        <th class="text-center">FECHA</th>
+                        <!-- <th class="text-center">ACCIONES</th> -->
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Los datos de los clientes se insertarán aquí -->
+                </tbody>
+            </table>
+        </div>
+        <br> 
+        <footer class="row">
+            <div class="col-md-6 text-center">
+                <p>Diseñado por: Xavier Porras</p>
+            </div>
+            <div class="col-md-6 text-center">
+                <p>&COPY; UNIVERSIDAD TÉCNICA DE COTOPAXI</p>
+            </div>
+        </footer>
+        <br>
+    </body>
+    <style>
+        body{
+            background: linear-gradient(to left, #504848, #eee5e6);
+            /* Puedes ajustar la dirección del gradiente (por ejemplo, to top, to left, to right, etc.) */
+            height: 100vh; /* Asegura que el fondo cubra toda la altura de la ventana */
+            margin: 0; /* Elimina los márgenes predeterminados */
+        }
+        /*Letras de color rojo*/
+        label.error{
+            color: red;
+        }
+        /*Bordes de color rojo */
+        .form-control.error{
+            border: 1px solid red;
+        }
+    </style>  
+    <!--CODIGO PARA VALIDAR-->
+    <script>
+        /*INGRESAR*/
+        document.getElementById('frm_nuevo_producto').addEventListener('submit', async function (event) {
+            event.preventDefault();
+            const nombre_prod = document.getElementById('nombre').value;
+            const precio_prod = document.getElementById('precio').value;
+            const stock_prod = parseInt(document.getElementById('stock').value, 10);
+            const fecha = new Date().toISOString().replace('T', ' ').split('.')[0];
+
+            try {
+                const response = await fetch('http://18.118.21.46:3000/api/producto', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ nombre_prod, precio_prod, stock_prod, fecha })
+                });
+
+                if (response.ok) {
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'PRODUCTO REGISTRADO',
+                        text: 'Producto registrado exitosamente.',
+                        confirmButtonText: 'Aceptar'
+                    }).then(() => {
+                        fetchProductos();
+                        document.getElementById('frm_nuevo_producto').reset(); // Limpiar formulario
+                    });
+                } else {
+                    const errorData = await response.json();
+                    alert(`Error al registrar el producto: ${errorData.error || 'Desconocido'}`);
+                }
+            } catch (error) {
+                alert(`Error al registrar el producto: ${errorData.error || 'Desconocido'}`);
+            }
+        });
+        // Cargar los productos al cargar la página
+        document.addEventListener('DOMContentLoaded', fetchProductos);
+
+        /*MOSTRAR DATOS EN TABLA USANDO FETCH*/
+        var table = new DataTable('#tableProducto');
+        async function fetchProductos(){
+            const response = await fetch('http://18.118.21.46:3000/api/producto');
+            const productos = await response.json();
+            const tbody = document.getElementById('tableProducto').querySelector('tbody');
+            tbody.innerHTML = '';
+
+            productos.forEach(producto => {
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                <td class="text-center">${producto.id_prod}</td>
+                <td class="text-center">${producto.nombre_prod}</td>
+                <td class="text-center">${producto.precio_prod}</td>
+                <td class="text-center">${producto.stock_prod}</td>
+                <td class="text-center">${producto.fecha}</td>
+            `;
+                tbody.appendChild(tr);
+            });
+        }
+
+    </script>
+</html>
